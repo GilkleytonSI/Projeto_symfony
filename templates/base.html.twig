@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Symfony</title>
+    <link rel="stylesheet" href="{{ asset('css/' ~ theme ~ '.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="nav-left">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
+                <nav class="nav">
+                    <a href="{{ path('home') }}" class="nav-link {% if app.request.get('_route') == 'home' %}active{% endif %}">Home</a>
+                    <a href="{{ path('blog') }}" class="nav-link {% if app.request.get('_route') == 'blog' %}active{% endif %}">Blog</a>
+                </nav>
+            </div>
+            <div class="nav-right">
+                <a href="{{ path('trocar_tema', {'theme': 'theme1'}) }}" class="nav-link theme-link {% if theme == 'theme1' %}active{% endif %}">Tema 1</a>
+                <a href="{{ path('trocar_tema', {'theme': 'theme2'}) }}" class="nav-link theme-link {% if theme == 'theme2' %}active{% endif %}">Tema 2</a>
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <div class="footer-content">Tema atual: {{ theme }}</div>
+    </footer>
+</body>
+</html>
